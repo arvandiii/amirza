@@ -1,9 +1,18 @@
 'use strict';
 
-const a = 'str';
+const c = require('./c');
+const _ = require('underscore');
+const path = require('path');
+const SpellChecker = require('simple-spellchecker');
+const dictionary = SpellChecker.getDictionarySync('fa-FA', path.join(__dirname, '..', 'dict'));
 
-function square(x) {
-  return x * x;
-}
+const chars = process.argv[2].split('');
+const cmb = c.power(chars);
+const arr = _.filter(cmb.toArray(), a => a.length > 1);
 
-console.log(square(12));
+arr.forEach(element => {
+  const word = element.join('');
+  if (dictionary.spellCheck(word)) {
+    console.log(word);
+  }
+});
