@@ -13,7 +13,10 @@ if (process.argv.length <= 2) {
 
 const chars = process.argv[2] ? process.argv[2].split('') : []
 const cmb = c.power(chars)
-const arr = _.filter(cmb.toArray(), a => a.length > 1)
+const arr = _.filter(
+  cmb.toArray(),
+  a => a.length > 2 || (process.argv[3] && a.length === process.argv[3])
+)
 
 arr.forEach(element => {
   const word = element.join('')
