@@ -6,7 +6,11 @@ const path = require('path');
 const SpellChecker = require('simple-spellchecker');
 const dictionary = SpellChecker.getDictionarySync('fa-FA', path.join(__dirname, '..', 'dict'));
 
-const chars = process.argv[2].split('');
+if (process.argv.length <= 2) {
+  console.log('vorodi bde');
+}
+
+const chars = process.argv[2] ? process.argv[2].split('') : [];
 const cmb = c.power(chars);
 const arr = _.filter(cmb.toArray(), a => a.length > 1);
 
