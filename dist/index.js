@@ -1,6 +1,6 @@
 'use strict';
 
-const c = require('./c');
+var G = require('generatorics');
 const _ = require('underscore');
 const path = require('path');
 const SpellChecker = require('simple-spellchecker');
@@ -11,12 +11,9 @@ if (process.argv.length <= 2) {
 }
 
 const chars = process.argv[2] ? process.argv[2].split('') : [];
-const cmb = c.power(chars);
-const arr = _.filter(cmb.toArray(), a => a.length > 2 || process.argv[3] && a.length === process.argv[3]);
-
-arr.forEach(element => {
-  const word = element.join('');
-  if (dictionary.spellCheck(word)) {
+for (var perm of G.permutationCombination(chars)) {
+  const word = perm.join('');
+  if (word.length > 2 && dictionary.spellCheck(word)) {
     console.log(word);
   }
-});
+}
