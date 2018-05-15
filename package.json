@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src/ -d dist/",
     "prepublish": "yarn run build",
-    "a": "node dist"
+    "mirza": "node dist"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
